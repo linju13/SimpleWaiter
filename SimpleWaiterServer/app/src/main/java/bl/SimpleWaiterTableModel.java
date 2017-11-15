@@ -11,7 +11,7 @@ public class SimpleWaiterTableModel
 {
     //Attribute
     private String[] columnNames = {"BestellId", "Zeitpunkt", "Betrag"};
-    private ArrayList<Order> orders;
+    private ArrayList<Bestellung> orders;
 
     public int getRowCount()
     {
