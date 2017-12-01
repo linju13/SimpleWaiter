@@ -1,29 +1,41 @@
 
 package beans;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 
 public class Bestellung 
 {
     //Attribute
-    private long bestellid;
-    private LocalDateTime bestellzeit;
+    private String bestellid; //"<KellnerNr>-Nr"
+                              //hab mir gedacht, dass es dann beim Server 
+                              //bei der Anzeige übersichtlicher ist, wenn die
+                              //Id dieses Muster hat
+    private Date bestellzeit;
     private Map<Getraenk, Integer> getraenke;
     private double gesamtSumme;
+    private static int id;
+    
+    static
+    {
+        id = 0;
+    }
 
-    public Bestellung(LocalDateTime bestellzeit, Map<Getraenk, Integer> getraenke, double gesamtSumme) {
+    public Bestellung(Date bestellzeit, Map<Getraenk, Integer> getraenke, double gesamtSumme, int kellnerId) 
+    {
         this.bestellzeit = bestellzeit;
         this.getraenke = getraenke;
         this.gesamtSumme = gesamtSumme;
+        
+        bestellid = String.format("%2d - %3d", kellnerId, ++id);
     }
     
     //getter
-    public long getBestellid() {
+    public String getBestellid() {
         return bestellid;
     }
 
-    public LocalDateTime getBestellzeit() {
+    public Date getBestellzeit() {
         return bestellzeit;
     }
 

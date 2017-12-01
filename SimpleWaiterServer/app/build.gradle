@@ -1,9 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
     defaultConfig {
+        jackOptions {
+            enabled true
+        }
         applicationId "speedbars.simplewaiterserver"
         minSdkVersion 21
         targetSdkVersion 25
