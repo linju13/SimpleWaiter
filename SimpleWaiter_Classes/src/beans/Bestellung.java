@@ -27,7 +27,7 @@ public class Bestellung
         this.getraenke = getraenke;
         this.gesamtSumme = gesamtSumme;
         
-        bestellid = String.format("%2d - %3d", kellnerId, ++id);
+        bestellid = String.format("%02d - %03d", kellnerId, ++id);
     }
     
     //getter
