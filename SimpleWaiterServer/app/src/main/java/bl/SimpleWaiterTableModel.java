@@ -2,6 +2,9 @@ package bl;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.widget.*;
 import beans.Bestellung;
 
@@ -51,5 +54,11 @@ public class SimpleWaiterTableModel
     public void addOrder(Bestellung order)
     {
         orders.add(order);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void sort()
+    {
+        orders.sort((o1, o2) -> o2.getBestellzeit().compareTo(o1.getBestellzeit()));
     }
 }
