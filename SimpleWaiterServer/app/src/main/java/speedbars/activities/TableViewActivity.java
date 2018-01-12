@@ -14,6 +14,7 @@ import beans.*;
 import java.util.*;
 
 import bl.SimpleWaiterTableModel;
+import server.SimpleWaiterServer;
 import speedbars.simplewaiterserver.R;
 
 public class TableViewActivity extends AppCompatActivity {
@@ -23,8 +24,6 @@ public class TableViewActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table_view);
-
-
 
         SimpleWaiterTableModel model = new SimpleWaiterTableModel();
 
@@ -37,69 +36,9 @@ public class TableViewActivity extends AppCompatActivity {
         model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
         model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
         model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
 
-
-
+        SimpleWaiterServer server = new SimpleWaiterServer(model , this);
+        server.startServer();
+        server.drawTable();
     }
 }
