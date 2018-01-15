@@ -27,13 +27,11 @@ public abstract class SimpleServer
         try
         {
             server = new ServerSocket(PORTNR);
-            log("Server started on Port " + PORTNR + ".......");
             thread = new ServerThread();
             thread.start();
         }
         catch(Exception ex)
         {
-            log(SimpleServer.class.getName() + "_" + ex.getMessage());
         }
     }
 
@@ -56,7 +54,6 @@ public abstract class SimpleServer
                 {
                     Socket socket = server.accept();
                     String clientStr = socket.getRemoteSocketAddress().toString();
-                    log("connected to " + clientStr);
 
                     ClientCommunicationThread cct =
                             new ClientCommunicationThread(socket);
@@ -68,11 +65,9 @@ public abstract class SimpleServer
             try
             {
                 server.close();
-                log("shut down");
             }
             catch (IOException ex)
             {
-                log("shut down failed");
             }
         }
     }
@@ -109,7 +104,6 @@ public abstract class SimpleServer
             }
             catch (IOException ex)
             {
-                log("Fehler in ClientCommunication" +  ex.toString());
             }
         }
     }
