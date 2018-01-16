@@ -53,7 +53,7 @@ public class SimpleWaiterTableModel
 
     public void addOrder(Bestellung order)
     {
-        orders.add(0, order);
+        orders.add(order);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

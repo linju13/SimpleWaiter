@@ -1,5 +1,6 @@
 package speedbars.activities;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,17 +27,6 @@ public class TableViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_table_view);
 
         SimpleWaiterTableModel model = new SimpleWaiterTableModel();
-
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-        model.addOrder(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
-
         SimpleWaiterServer server = new SimpleWaiterServer(model , this);
         server.startServer();
         //drawTable(model, this, model);
@@ -86,8 +76,22 @@ public class TableViewActivity extends AppCompatActivity {
                             row.addView(view);
                             row.addView(view2);
                             row.addView(view3);
-
+                            row.setTransitionName(model.getRowCount()-1+"");
                             table.addView(row, 1);
+
+                            row.setOnClickListener(new View.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(View v)
+                                {
+                                    Context context = getApplicationContext();
+                                    CharSequence text = model.getValueAt(Integer.parseInt(v.getTransitionName()), 0).toString();
+                                    int duration = Toast.LENGTH_SHORT;
+
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }
+                            });
                         }
                     });
                     Thread.sleep(300);
