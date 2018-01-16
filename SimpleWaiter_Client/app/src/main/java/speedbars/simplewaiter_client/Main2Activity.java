@@ -19,12 +19,6 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
     }
 
-    public void onAnzeige(View v)
-    {
-        Intent intent = new Intent(this, Anzeige.class);
-        startActivity(intent);
-    }
-
     public void onKassa(View v)
     {
         Intent intent = new Intent(this, Kassa.class);

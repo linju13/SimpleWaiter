@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:columnCount="5"
-        android:background="@color/colorPrimary">
+
+        android:background="@color/colorPrimaryDark">
 
         <TextView
             android:layout_columnSpan="5"
@@ -23,7 +24,10 @@
             android:textStyle="bold"
             android:textSize="70sp"
             android:layout_columnWeight="1"
-            android:layout_rowWeight="0"/>
+            android:layout_rowWeight="0"
+
+
+            />
 
 
 
@@ -178,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:textSize="50sp"
                 android:layout_margin="10dp"
-                android:background="@drawable/shape_button_site"/>
+                android:background="@color/colorPrimary"/>
             <!-- shape_ButtonSite-->
             <Button
                 android:layout_column="2"
@@ -190,7 +194,8 @@
                 android:layout_width="wrap_content"
                 android:textSize="50sp"
                 android:layout_margin="10dp"
-                android:background="@drawable/shape_button_site"/>
+
+                android:background="@color/colorPrimary"/>
         </GridLayout>
     </GridLayout>
 </android.support.constraint.ConstraintLayout>
