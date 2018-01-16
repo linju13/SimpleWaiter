@@ -1,8 +1,10 @@
 
 package bl;
 
+import java.io.Serializable;
 
-public class Kassa 
+
+public class Kassa implements Serializable
 {
     private double kassastand;
     private double startSumme;

@@ -2,10 +2,11 @@
 package beans;
 
 import enums.EinheitenEnum;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
-public class Bestellung 
+public class Bestellung implements Serializable
 {
     //Attribute
     private String bestellid; //"<KellnerNr>-Nr"

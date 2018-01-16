@@ -6,13 +6,15 @@
 package bl;
 
 import beans.Bestellung;
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author jürgen
  */
-public class ClientBL {
+public class ClientBL implements Serializable
+{
     private Kassa kassastand;
     private LinkedList<Bestellung> bestellungsliste;
     private Bestellung momentanBestellung;
