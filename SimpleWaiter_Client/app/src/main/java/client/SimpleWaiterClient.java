@@ -1,6 +1,8 @@
 
 package client;
 
+import android.os.StrictMode;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -30,6 +32,10 @@ public class SimpleWaiterClient
     {
         try
         {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+            StrictMode.setThreadPolicy(policy);
+
             socket = new Socket(HOST_NAME, PORTNR);
         }
         catch(Exception ex)
@@ -40,11 +46,13 @@ public class SimpleWaiterClient
 
         return false;
     }
+    static int i = 0;
 
     public void send() throws IOException {
         writer = new ObjectOutputStream(socket.getOutputStream());
         writer.writeObject(Command.NEW_ORDER);
-        writer.writeObject(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 134.56, 1));
+        i += 10;
+        writer.writeObject(new Bestellung(new Date() ,null, 20000+i, 1));
     }
 
     public void close()

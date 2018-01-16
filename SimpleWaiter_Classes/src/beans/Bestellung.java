@@ -1,10 +1,12 @@
 
 package beans;
 
+import enums.EinheitenEnum;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
-public class Bestellung 
+public class Bestellung implements Serializable
 {
     //Attribute
     private String bestellid; //"<KellnerNr>-Nr"
@@ -45,6 +47,40 @@ public class Bestellung
 
     public double getGesamtSumme() {
         return gesamtSumme;
+    }
+    
+    
+    public void getraenkHinzufuegen(Getraenk g, int value){
+        if(getraenke.containsKey(g)){
+            int val = getraenke.get(g)+value;
+            getraenke.put(g, val);
+        } else {
+            getraenke.put(g, value);
+        }
+        gesamtSumme += value*g.getPreis();
+    } 
+    
+    public void getraenkStornieren(Getraenk g, int value){
+        if(getraenke.containsKey(g)){
+            int val = getraenke.get(g)-value;
+            getraenke.put(g, val); 
+            gesamtSumme -= value*g.getPreis();
+        }
+        
+    }
+   
+    public Getraenk getGetraenk(String name, double menge, double preis, EinheitenEnum num ){
+        Getraenk get = null;
+        for(Getraenk g: getraenke.keySet()){
+            if(g.getName()==name && g.getPreis()==preis && g.getMenge()==menge && g.getEinheit()==num){
+                get = g;
+            }
+        }
+        
+        if(get==null){
+            get = new Getraenk(name, menge, preis, num);
+        }
+        return get;
     }
     
 }

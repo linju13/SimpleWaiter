@@ -61,4 +61,10 @@ public class SimpleWaiterTableModel
     {
         orders.sort((o1, o2) -> o2.getBestellzeit().compareTo(o1.getBestellzeit()));
     }
+
+    public String formatDate(Date date)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:MM:ss    dd.MM.yy");
+        return sdf.format(date);
+    }
 }
