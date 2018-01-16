@@ -33,9 +33,8 @@ public class SimpleWaiterServer extends SimpleServer
 
     public SimpleWaiterServer(SimpleWaiterTableModel model, TableViewActivity activity)
     {
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        //StrictMode.setThreadPolicy(policy);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         id = new HashSet<Integer>();
         this.model = model;
@@ -54,14 +53,13 @@ public class SimpleWaiterServer extends SimpleServer
             ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
 
             Bestellung bestellung;
-            //String s = reader.readObject().toString();
 
             while(!reader.readObject().toString().equals(Command.DISCONNECT))
             {
                 bestellung = (Bestellung) reader.readObject();
 
                 model.addOrder(bestellung);
-                activity.drawTable(model);
+                activity.drawTable(bestellung, activity, model);
             }
         }
         catch(Exception ex)
@@ -71,5 +69,4 @@ public class SimpleWaiterServer extends SimpleServer
 
         return null;
     }
-
 }

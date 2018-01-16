@@ -46,11 +46,13 @@ public class SimpleWaiterClient
 
         return false;
     }
+    static int i = 0;
 
     public void send() throws IOException {
         writer = new ObjectOutputStream(socket.getOutputStream());
         writer.writeObject(Command.NEW_ORDER);
-        writer.writeObject(new Bestellung(new Date(2017, 12, 2, 14, 13, 5) ,null, 20000, 1));
+        i += 10;
+        writer.writeObject(new Bestellung(new Date() ,null, 20000+i, 1));
     }
 
     public void close()

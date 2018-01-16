@@ -53,12 +53,18 @@ public class SimpleWaiterTableModel
 
     public void addOrder(Bestellung order)
     {
-        orders.add(order);
+        orders.add(0, order);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void sort()
     {
         orders.sort((o1, o2) -> o2.getBestellzeit().compareTo(o1.getBestellzeit()));
+    }
+
+    public String formatDate(Date date)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:MM:ss    dd.MM.yy");
+        return sdf.format(date);
     }
 }

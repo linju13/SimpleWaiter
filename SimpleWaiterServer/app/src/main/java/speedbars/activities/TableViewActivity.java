@@ -39,12 +39,68 @@ public class TableViewActivity extends AppCompatActivity {
 
         SimpleWaiterServer server = new SimpleWaiterServer(model , this);
         server.startServer();
-        drawTable(model);
+        //drawTable(model, this, model);
     }
 
-    public void drawTable(SimpleWaiterTableModel model)
+    public void drawTable(Bestellung bestellung, TableViewActivity tableview, SimpleWaiterTableModel model)
     {
-        TableLayout table = (TableLayout) this.findViewById(R.id.tableLayout);
+        new Thread() {
+            public void run() {
+                try {
+                    runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run()
+                        {
+                            TableLayout table = (TableLayout) tableview.findViewById(R.id.tableLayout);
+
+                            String[] colors = {"#f2f2f2","#cccccc"};
+
+                            TextView view;
+                            TextView view2;
+                            TextView view3;
+                            TableRow row;
+
+                            view = new TextView(tableview);
+                            view.setText(bestellung.getBestellid());
+                            view.setLayoutParams(tableview.findViewById(R.id.bestellid).getLayoutParams());
+                            view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
+                            view.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
+                            view.setPadding(30,0,0,0);
+
+                            view2 = new TextView(tableview);
+                            view2.setText(model.formatDate(bestellung.getBestellzeit()));
+                            view2.setLayoutParams(tableview.findViewById(R.id.bestellzeit).getLayoutParams());
+                            view2.setMaxWidth(tableview.findViewById(R.id.bestellzeit).getWidth());
+                            view2.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
+                            view2.setPadding(30,0,0,0);
+
+                            view3 = new TextView(tableview);
+                            view3.setText(String.format("%6.2f €", bestellung.getGesamtSumme()));
+                            view3.setLayoutParams(tableview.findViewById(R.id.summe).getLayoutParams());
+                            view3.setMaxWidth(tableview.findViewById(R.id.summe).getWidth());
+                            view3.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
+                            view3.setPadding(30,0,0,0);
+
+                            row = new TableRow(tableview);
+                            row.addView(view);
+                            row.addView(view2);
+                            row.addView(view3);
+
+                            table.addView(row, 1);
+                        }
+                    });
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    /*public void help()
+    {
+        ableLayout table = (TableLayout) tableview.findViewById(R.id.tableLayout);
 
         String[] colors = {"#f2f2f2","#cccccc"};
 
@@ -55,33 +111,33 @@ public class TableViewActivity extends AppCompatActivity {
 
         for(int i = 0; i < model.getRowCount(); i++)
         {
-            view = new TextView(this);
+            view = new TextView(tableview);
             view.setText(model.getValueAt(i,0)+"");
-            view.setLayoutParams(this.findViewById(R.id.bestellid).getLayoutParams());
-            view.setMaxWidth(this.findViewById(R.id.bestellid).getWidth());
+            view.setLayoutParams(tableview.findViewById(R.id.bestellid).getLayoutParams());
+            view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
             view.setBackgroundColor(Color.parseColor(colors[i%2]));
             view.setPadding(30,0,0,0);
 
-            view2 = new TextView(this);
+            view2 = new TextView(tableview);
             view2.setText(model.getValueAt(i,1)+"");
-            view2.setLayoutParams(this.findViewById(R.id.bestellzeit).getLayoutParams());
-            view2.setMaxWidth(this.findViewById(R.id.bestellzeit).getWidth());
+            view2.setLayoutParams(tableview.findViewById(R.id.bestellzeit).getLayoutParams());
+            view2.setMaxWidth(tableview.findViewById(R.id.bestellzeit).getWidth());
             view2.setBackgroundColor(Color.parseColor(colors[i%2]));
             view2.setPadding(30,0,0,0);
 
-            view3 = new TextView(this);
+            view3 = new TextView(tableview);
             view3.setText(model.getValueAt(i,2)+"");
-            view3.setLayoutParams(this.findViewById(R.id.summe).getLayoutParams());
-            view3.setMaxWidth(this.findViewById(R.id.summe).getWidth());
+            view3.setLayoutParams(tableview.findViewById(R.id.summe).getLayoutParams());
+            view3.setMaxWidth(tableview.findViewById(R.id.summe).getWidth());
             view3.setBackgroundColor(Color.parseColor(colors[i%2]));
             view3.setPadding(30,0,0,0);
 
-            row = new TableRow(this);
+            row = new TableRow(tableview);
             row.addView(view);
             row.addView(view2);
             row.addView(view3);
 
-            table.addView(row);
+            table.addView(row, 1);
         }
-    }
+    }*/
 }
