@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lisal.simplewaiter.Tasten"
+    tools:context="speedbars.simplewaiter_client.Tasten"
     android:background="@color/colorPrimary">
 <!-- Namen des Getränks, Preis des Getränks, Stelle des Getränks-->
     <GridLayout
@@ -20,7 +20,7 @@
             android:textStyle="bold"
             android:textSize="70sp"
             android:textAlignment="center"
-            android:background="@color/colorPrimaryDark"
+            android:background="#ff7623"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"/>
@@ -44,7 +44,7 @@
             android:textSize="50sp"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:background="#@color/colorLightGray"/>
+            android:background="@color/colorLightGray"/>
 
         <View
             android:layout_row="3"
@@ -67,7 +67,7 @@
             android:textSize="50sp"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:background="#@color/colorLightGray"/>
+            android:background="@color/colorLightGray"/>
         <View
             android:layout_row="5"
             android:layout_columnSpan="2"
