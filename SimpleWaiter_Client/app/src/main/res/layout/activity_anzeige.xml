@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.lisal.simplewaiter.Main2"
+    tools:context="speedbars.simplewaiter_client.Main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/party"
@@ -72,7 +72,7 @@
                 android:textColor="#ffffff"
                 android:background="#000000"
                 android:alpha="0.7"
-                android:onClick="ont"
+                android:onClick="onTasten"
                 />
         </RelativeLayout>
 
@@ -108,7 +108,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:text="Export"
+                android:text="Exportieren"
                 android:textStyle="bold"
                 android:textSize="50sp"
                 android:textAlignment="center"
