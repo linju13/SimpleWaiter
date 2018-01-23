@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<getraenke>
+    <getraenk name="Bacardi Cola">
+        <menge>0.3</menge>
+        <einheit>LITER</einheit>
+        <preis>3.5</preis>
+    </getraenk>
+    <getraenk name="Red Bull">
+        <menge>0.25</menge>
+        <einheit>LITER</einheit>
+        <preis>4.0</preis>
+    </getraenk>
+    <getraenk name="Gin Tonic">
+        <menge>0.3</menge>
+        <einheit>LITER</einheit>
+        <preis>4.1</preis>
+    </getraenk>
+    <getraenk name="Tequila">
+        <menge>0.2</menge>
+        <einheit>CL</einheit>
+        <preis>2.2</preis>
+    </getraenk>
+</getraenke>

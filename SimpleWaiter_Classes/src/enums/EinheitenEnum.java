@@ -2,11 +2,15 @@ package enums;
 
 
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
 
-
+//@XmlType(propOrder = {"bezeichnung", "kurzzeichen"})
+@XmlEnum
 public enum EinheitenEnum implements Serializable
 {   
-    LITER("Liter", "l");
+    LITER("Liter", "l"),
+    CL("Centiliter", "cl");
     
     //Attribute
     private String bezeichnung;
@@ -30,5 +34,11 @@ public enum EinheitenEnum implements Serializable
 
     public String getKurzzeichen() {
         return kurzzeichen;
-    }  
+    } 
+
+    @Override
+    public String toString() {
+        return bezeichnung + ", " + kurzzeichen;
+    }
+    
 }

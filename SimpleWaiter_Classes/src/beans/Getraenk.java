@@ -3,14 +3,22 @@ package beans;
 
 import enums.EinheitenEnum;
 import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
 
-
+@XmlType(propOrder = {"name","menge", "einheit", "preis"})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Getraenk implements Serializable
 {
-    //Attribute
+    @XmlAttribute 
     private String name;
+    
     private double menge;
+    
     private double preis;
+    
     private EinheitenEnum einheit;
 
     public Getraenk(String name, double menge, double preis, EinheitenEnum einheit) {
@@ -20,8 +28,8 @@ public class Getraenk implements Serializable
         this.einheit = einheit;
     }
 
-    
-    
+    public Getraenk()
+    { }
     
     //getter
     public String getName() {
@@ -38,6 +46,11 @@ public class Getraenk implements Serializable
 
     public EinheitenEnum getEinheit() {
         return einheit;
+    }
+
+    @Override
+    public String toString() {
+        return  name + ", " + menge + " " + einheit.getBezeichnung() + " - " +String.format("%.2f €", preis);
     }
     
     
