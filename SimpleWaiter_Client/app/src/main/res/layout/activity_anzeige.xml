@@ -108,7 +108,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:text="Export"
+                android:text="Exportieren"
                 android:textStyle="bold"
                 android:textSize="50sp"
                 android:textAlignment="center"
