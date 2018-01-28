@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:fitsSystemWindows="true"
+        tools:context="speedbars.activities.TableViewActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:id="@+id/row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" >
+
+            <TextView
+                android:id="@+id/getraenk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight=".50"
+                android:text="BestellId"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:background="#ff9900"
+                android:fontFamily="arial"
+                android:layout_marginRight="5px"
+                android:layout_marginEnd="5px"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/menge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".10"
+                android:layout_column="1"
+                android:textSize="24sp"
+                android:text="Bestellzeit"
+                android:gravity="center"
+                android:background="#ff9900"
+                android:fontFamily="arial"
+                android:layout_marginRight="5px"
+                android:layout_marginEnd="5px"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/einzelpreis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_column="2"
+                android:textSize="24sp"
+                android:text="Summe"
+                android:gravity="center"
+                android:background="#ff9900"
+                android:fontFamily="arial"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/summe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".20"
+                android:layout_column="3"
+                android:textSize="24sp"
+                android:text="Summe"
+                android:gravity="center"
+                android:background="#ff9900"
+                android:fontFamily="arial"
+                android:textColor="#000000"/>
+        </TableRow>
+    </TableLayout>
+</android.support.constraint.ConstraintLayout>

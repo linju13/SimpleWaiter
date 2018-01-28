@@ -115,6 +115,7 @@
                 android:textColor="#ffffff"
                 android:background="#000000"
                 android:alpha="0.7"
+                android:onClick="onSend"
                 />
         </RelativeLayout>
     </GridLayout>

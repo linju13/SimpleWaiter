@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.widget.*;
 import beans.Bestellung;
+import beans.Getraenk;
 
 /**
  * Created by jürgen on 14.11.2017.
@@ -66,5 +67,24 @@ public class SimpleWaiterTableModel
     {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:MM:ss    dd.MM.yy");
         return sdf.format(date);
+    }
+
+    public String toStringOrder(int row)
+    {
+        Bestellung order = orders.get(row);
+
+        Map<Getraenk, Integer> orderMap = order.getGetraenke();
+        String output = "";
+        String quantity;
+
+        for(Getraenk o: orderMap.keySet())
+        {
+            quantity = String.format("(%.2f%s)", o.getMenge(), o.getEinheit().getKurzzeichen());
+
+            output += String.format("%-30sx%2d=%.2f €\n", o.getName()+quantity, orderMap.get(o),
+                                                           o.getPreis()*orderMap.get(o));
+        }
+
+        return output;
     }
 }

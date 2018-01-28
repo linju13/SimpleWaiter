@@ -13,11 +13,15 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import beans.Bestellung;
 import beans.Command;
+import beans.Getraenk;
+import enums.EinheitenEnum;
 
 public class SimpleWaiterClient
 {
@@ -52,7 +56,11 @@ public class SimpleWaiterClient
         writer = new ObjectOutputStream(socket.getOutputStream());
         writer.writeObject(Command.NEW_ORDER);
         i += 10;
-        writer.writeObject(new Bestellung(new Date() ,null, 20000+i, 1));
+        Map<Getraenk, Integer> orderMap = new HashMap();
+        orderMap.put(new Getraenk("Rum Cola", 0.25, 3.20, EinheitenEnum.LITER), 3);
+        orderMap.put(new Getraenk("Klopfer", 0.15, 2, EinheitenEnum.LITER), 1);
+        orderMap.put(new Getraenk("Vodka Orange", 0.25, 4, EinheitenEnum.LITER), 2);
+        writer.writeObject(new Bestellung(new Date() ,orderMap, 20000+i, 1));
     }
 
     public void close()

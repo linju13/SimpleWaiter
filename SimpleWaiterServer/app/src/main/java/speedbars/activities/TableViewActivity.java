@@ -84,12 +84,7 @@ public class TableViewActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v)
                                 {
-                                    Context context = getApplicationContext();
-                                    CharSequence text = model.getValueAt(Integer.parseInt(v.getTransitionName()), 0).toString();
-                                    int duration = Toast.LENGTH_SHORT;
-
-                                    Toast toast = Toast.makeText(context, text, duration);
-                                    toast.show();
+                                    drawDetails(Integer.parseInt(v.getTransitionName()), model, tableview);
                                 }
                             });
                         }
@@ -102,46 +97,37 @@ public class TableViewActivity extends AppCompatActivity {
         }.start();
     }
 
-    /*public void help()
+    public void drawDetails(int index, SimpleWaiterTableModel model, TableViewActivity tableview)
     {
-        ableLayout table = (TableLayout) tableview.findViewById(R.id.tableLayout);
+        new Thread() {
+            public void run() {
+                try {
+                    runOnUiThread(new Runnable() {
 
-        String[] colors = {"#f2f2f2","#cccccc"};
+                        @Override
+                        public void run()
+                        {
+                            TableLayout table = (TableLayout) tableview.findViewById(R.id.tableLayout);
 
-        TextView view;
-        TextView view2;
-        TextView view3;
-        TableRow row;
+                            String[] colors = {"#f2f2f2","#cccccc"};
 
-        for(int i = 0; i < model.getRowCount(); i++)
-        {
-            view = new TextView(tableview);
-            view.setText(model.getValueAt(i,0)+"");
-            view.setLayoutParams(tableview.findViewById(R.id.bestellid).getLayoutParams());
-            view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
-            view.setBackgroundColor(Color.parseColor(colors[i%2]));
-            view.setPadding(30,0,0,0);
+                            TextView view;
 
-            view2 = new TextView(tableview);
-            view2.setText(model.getValueAt(i,1)+"");
-            view2.setLayoutParams(tableview.findViewById(R.id.bestellzeit).getLayoutParams());
-            view2.setMaxWidth(tableview.findViewById(R.id.bestellzeit).getWidth());
-            view2.setBackgroundColor(Color.parseColor(colors[i%2]));
-            view2.setPadding(30,0,0,0);
+                            view = new TextView(tableview);
+                            view.setText(model.toStringOrder(index));
+                            view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
+                            view.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
 
-            view3 = new TextView(tableview);
-            view3.setText(model.getValueAt(i,2)+"");
-            view3.setLayoutParams(tableview.findViewById(R.id.summe).getLayoutParams());
-            view3.setMaxWidth(tableview.findViewById(R.id.summe).getWidth());
-            view3.setBackgroundColor(Color.parseColor(colors[i%2]));
-            view3.setPadding(30,0,0,0);
-
-            row = new TableRow(tableview);
-            row.addView(view);
-            row.addView(view2);
-            row.addView(view3);
-
-            table.addView(row, 1);
-        }
-    }*/
+                            TableRow row = new TableRow(tableview);
+                            row.addView(view);
+                            table.addView(row, 1);
+                        }
+                    });
+                    Thread.sleep(300);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
 }
