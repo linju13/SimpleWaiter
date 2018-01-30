@@ -16,7 +16,10 @@ import java.io.*;
 
 import beans.Bestellung;
 import beans.Command;
+import beans.Getraenk;
+import beans.Getraenkelist;
 import bl.SimpleWaiterTableModel;
+import enums.EinheitenEnum;
 import speedbars.activities.TableViewActivity;
 import speedbars.simplewaiterserver.R;
 
@@ -33,9 +36,6 @@ public class SimpleWaiterServer extends SimpleServer
 
     public SimpleWaiterServer(SimpleWaiterTableModel model, TableViewActivity activity)
     {
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         id = new HashSet<Integer>();
         this.model = model;
         this.activity = activity;
@@ -50,10 +50,25 @@ public class SimpleWaiterServer extends SimpleServer
         try
         {
             ObjectOutputStream writer = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
+            Getraenkelist list = new Getraenkelist();
+            list.addGeatraenk(new Getraenk("Rum Cola",0.3,2.75, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("Vodka Cola",0.3,2.75, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("Vodka Orange",0.3,3, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("Malibu Orange",0.3,5, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("1253",0.3,5, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("<esyhfr",0.3,5, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("djgxfzcit",0.3,5, EinheitenEnum.LITER));
+
+            writer.writeObject(list);
 
             Bestellung bestellung;
 
+
+            ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
             while(!reader.readObject().toString().equals(Command.DISCONNECT))
             {
                 bestellung = (Bestellung) reader.readObject();

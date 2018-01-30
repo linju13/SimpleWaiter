@@ -2,6 +2,7 @@
 package client;
 
 import android.os.StrictMode;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 import beans.Bestellung;
 import beans.Command;
 import beans.Getraenk;
+import beans.Getraenkelist;
 import enums.EinheitenEnum;
 
 public class SimpleWaiterClient
@@ -32,7 +34,7 @@ public class SimpleWaiterClient
     private ObjectInputStream reader;
     private ObjectOutputStream writer;
 
-    public boolean connect()
+    public Getraenkelist connect()
     {
         try
         {
@@ -41,15 +43,20 @@ public class SimpleWaiterClient
             StrictMode.setThreadPolicy(policy);
 
             socket = new Socket(HOST_NAME, PORTNR);
+
+            reader = new ObjectInputStream(socket.getInputStream());
+            Getraenkelist list =  (Getraenkelist) reader.readObject();
+            Log.e("Client-----", list.toString());
+            return list;
         }
         catch(Exception ex)
         {
-            System.out.println(ex.toString());
-            return true;
+            Log.e("Client-----", ex.toString());
+            return null;
         }
-
-        return false;
     }
+
+
     static int i = 0;
 
     public void send() throws IOException {

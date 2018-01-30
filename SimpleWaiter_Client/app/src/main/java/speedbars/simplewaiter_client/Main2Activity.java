@@ -3,15 +3,20 @@ package speedbars.simplewaiter_client;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.io.IOException;
 
+import beans.Getraenkelist;
 import client.SimpleWaiterClient;
 import android.content.*;
 import android.widget.*;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity
+{
+    //Attribute
+    private Getraenkelist list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,7 @@ public class Main2Activity extends AppCompatActivity {
     public void onKassa(View v)
     {
         Intent intent = new Intent(this, Kassa.class);
+        intent.putExtra("list", list);
         startActivity(intent);
     }
 
@@ -34,14 +40,7 @@ public class Main2Activity extends AppCompatActivity {
     public void onSend(View v)
     {
         SimpleWaiterClient client = new SimpleWaiterClient();
-        client.connect();
-        try
-        {
-            client.send();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        list = client.connect();
+        Log.e("Client-----", list.getGetraenke().toString());
     }
 }

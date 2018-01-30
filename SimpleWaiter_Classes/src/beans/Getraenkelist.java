@@ -5,6 +5,7 @@
  */
 package beans;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,7 +21,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement (name="getraenke")
 @XmlType(propOrder = {"getraenke"})
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Getraenkelist {
+public class Getraenkelist implements Serializable
+{
     
     @XmlElement (name="getraenk")
     private LinkedList<Getraenk> getraenke;
