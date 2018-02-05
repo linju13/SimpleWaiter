@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SimpleWaiterServer.iml" filepath="$PROJECT_DIR$/SimpleWaiterServer.iml" />
+      <module fileurl="file://C:\Users\Lisal\Documents\Schule\910AHIF\SYP Projekt\SimpleWaiter\SimpleWaiterServer\SimpleWaiterServer.iml" filepath="C:\Users\Lisal\Documents\Schule\910AHIF\SYP Projekt\SimpleWaiter\SimpleWaiterServer\SimpleWaiterServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Lisal\Documents\Schule\910AHIF\SYP Projekt\SimpleWaiter\SimpleWaiterServer\app\app.iml" filepath="C:\Users\Lisal\Documents\Schule\910AHIF\SYP Projekt\SimpleWaiter\SimpleWaiterServer\app\app.iml" />
     </modules>
   </component>
 </project>
