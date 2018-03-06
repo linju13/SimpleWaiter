@@ -36,7 +36,7 @@ public class Test {
     
     private void testXMLAccess()
     {
-        XMLAccess xml = XMLAccess.getInstance();
+        XMLAccess xml = XMLAccess.getInstance("");
         try {
             xml.marshall(getraenke);
         } catch (JAXBException ex) {

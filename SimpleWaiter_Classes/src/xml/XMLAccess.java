@@ -24,18 +24,21 @@ import javax.xml.bind.Unmarshaller;
 public class XMLAccess {
     private static XMLAccess theInstance;
     
-    public static XMLAccess getInstance()
+    public static XMLAccess getInstance(String fileName)
     {
         if(theInstance == null)
         {
-            theInstance = new XMLAccess();
+            theInstance = new XMLAccess(fileName);
         }
         return theInstance;
     }
     
-    private XMLAccess()
+    private XMLAccess(String fileName)
     {
-        
+        if(!fileName.equals(""))
+        {
+            this.fileName = fileName;
+        }
     }
     
     private String fileName = System.getProperty("user.dir") + File.separator + "src" + File.separator + "data" + File.separator + "getraenkeliste.xml";

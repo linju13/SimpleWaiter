@@ -22,6 +22,7 @@ import bl.SimpleWaiterTableModel;
 import enums.EinheitenEnum;
 import speedbars.activities.TableViewActivity;
 import speedbars.simplewaiterserver.R;
+import xml.XMLAccess;
 
 /**
  * Created by jürgen on 14.11.2017.
@@ -66,7 +67,6 @@ public class SimpleWaiterServer extends SimpleServer
             writer.writeObject(list);
 
             Bestellung bestellung;
-
 
             ObjectInputStream reader = new ObjectInputStream(socket.getInputStream());
             while(!reader.readObject().toString().equals(Command.DISCONNECT))

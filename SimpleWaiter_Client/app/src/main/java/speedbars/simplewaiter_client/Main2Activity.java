@@ -43,4 +43,9 @@ public class Main2Activity extends AppCompatActivity
         list = client.connect();
         Log.e("Client-----", list.getGetraenke().toString());
     }
+
+    public void onFinish(View v)
+    {
+        finish();
+    }
 }

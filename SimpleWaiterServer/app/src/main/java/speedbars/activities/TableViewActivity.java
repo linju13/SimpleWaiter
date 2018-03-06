@@ -1,6 +1,7 @@
 package speedbars.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import java.util.*;
 
 import bl.SimpleWaiterTableModel;
 import server.SimpleWaiterServer;
+import speedbars.simplewaiterserver.Managegetraenkeliste;
 import speedbars.simplewaiterserver.R;
 
 public class TableViewActivity extends AppCompatActivity {
@@ -130,4 +132,6 @@ public class TableViewActivity extends AppCompatActivity {
             }
         }.start();
     }
+
+
 }
