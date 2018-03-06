@@ -21,7 +21,7 @@ public class Managegetraenkeliste extends AppCompatActivity {
     private XMLAccess xml;
 
 
-    @Override
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_managegetraenkeliste);
@@ -70,5 +70,5 @@ public class Managegetraenkeliste extends AppCompatActivity {
     public void onLoad(View view)
     {
 
-    }
+    }*/
 }

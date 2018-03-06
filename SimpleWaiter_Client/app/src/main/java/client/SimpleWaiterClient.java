@@ -26,6 +26,12 @@ public class SimpleWaiterClient
     private Socket socket;
     private ObjectInputStream reader;
     private ObjectOutputStream writer;
+    private static SimpleWaiterClient theInstance;
+
+    private SimpleWaiterClient()
+    {
+
+    }
 
     public Getraenkelist connect()
     {
@@ -38,7 +44,10 @@ public class SimpleWaiterClient
             socket = new Socket(HOST_NAME, PORTNR);
 
             reader = new ObjectInputStream(socket.getInputStream());
+            writer = new ObjectOutputStream(socket.getOutputStream());
+
             Getraenkelist list =  (Getraenkelist) reader.readObject();
+            Log.e("Client-----", list.toString());
             return list;
         }
         catch(Exception ex)
@@ -51,15 +60,10 @@ public class SimpleWaiterClient
 
     static int i = 0;
 
-    public void send() throws IOException {
-        writer = new ObjectOutputStream(socket.getOutputStream());
+    public void send(Bestellung order) throws IOException
+    {
         writer.writeObject(Command.NEW_ORDER);
-        i += 10;
-        Map<Getraenk, Integer> orderMap = new HashMap();
-        orderMap.put(new Getraenk("Rum Cola", 0.25, 3.20, EinheitenEnum.LITER), 3);
-        orderMap.put(new Getraenk("Klopfer", 0.15, 2, EinheitenEnum.LITER), 1);
-        orderMap.put(new Getraenk("Vodka Orange", 0.25, 4, EinheitenEnum.LITER), 2);
-        writer.writeObject(new Bestellung(new Date() ,orderMap, 20000+i, 1));
+        writer.writeObject(order);
     }
 
     public void close()
@@ -73,6 +77,16 @@ public class SimpleWaiterClient
         {
             System.out.println(ex.toString());
         }
+    }
+
+    public static SimpleWaiterClient getTheInstance()
+    {
+        if(theInstance == null)
+        {
+            theInstance = new SimpleWaiterClient();
+        }
+
+        return theInstance;
     }
 
 }

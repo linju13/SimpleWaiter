@@ -24,25 +24,16 @@ public class Main2Activity extends AppCompatActivity
         setContentView(R.layout.activity_anzeige);
     }
 
-    public void onKassa(View v)
+    public void onConnect(View v)
     {
+        SimpleWaiterClient client = SimpleWaiterClient.getTheInstance();
+        list = client.connect();
+        Log.e("Client-----", list.getGetraenke().toString());
         Intent intent = new Intent(this, Kassa.class);
         intent.putExtra("list", list);
         startActivity(intent);
     }
 
-    public void onTasten(View v)
-    {
-        Intent intent = new Intent(this, Tasten.class);
-        startActivity(intent);
-    }
-
-    public void onSend(View v)
-    {
-        SimpleWaiterClient client = new SimpleWaiterClient();
-        list = client.connect();
-        Log.e("Client-----", list.getGetraenke().toString());
-    }
 
     public void onFinish(View v)
     {

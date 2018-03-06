@@ -1,25 +1,41 @@
 package speedbars.simplewaiter_client;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 
+import beans.Bestellung;
 import beans.Getraenk;
 import beans.Getraenkelist;
+import client.SimpleWaiterClient;
 import speedbars.simplewaiter_client.R;
 
 public class Kassa extends AppCompatActivity
 {
     //Attribute
     private Button[][] buttons;
+    private static Bestellung order;
+    private LinkedList<Getraenk> list;
+    final Kassa kassa = this;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kassa);
+
+
+        ((TextView)this.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", 0.0));
+
+        order = new Bestellung(new Date(), 15);
 
 
         buttons = new Button[4][5];
@@ -66,12 +82,43 @@ public class Kassa extends AppCompatActivity
 
         Getraenkelist listObject = (Getraenkelist) getIntent().getSerializableExtra("list");
         Log.e("Client-----", listObject.toString());
-        LinkedList<Getraenk> list = listObject.getGetraenke();
+        list = listObject.getGetraenke();
 
         for(int i = 0; i < list.size(); i++)
         {
             buttons[i/5][i%5].setText(list.get(i).getName());
             buttons[i/5][i%5].setEnabled(true);
+            buttons[i/5][i%5].setTransitionName(i+"");
+
+
+            buttons[i/5][i%5].setOnClickListener(new View.OnClickListener()
+            {
+                public void onClick(View v)
+                {
+                    Log.e("----------", list.get(Integer.parseInt(v.getTransitionName()))+"");
+                    order.getraenkHinzufuegen(list.get(Integer.parseInt(v.getTransitionName())), 1);
+                    ((TextView)kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", order.getGesamtSumme()));
+                }
+            });
         }
+    }
+
+    public void pay(View view)
+    {
+        try
+        {
+            order.setBestellzeit(new Date());
+
+            SimpleWaiterClient client = SimpleWaiterClient.getTheInstance();
+            client.send(order);
+            order = new Bestellung(new Date(), 15);
+
+            ((TextView)kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", 0.0));
+        }
+        catch (Exception ex)
+        {
+            Log.e("senOrder----", ex.toString());
+        }
+
     }
 }
