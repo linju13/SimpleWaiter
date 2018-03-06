@@ -4,20 +4,13 @@ package client;
 import android.os.StrictMode;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import beans.Bestellung;
 import beans.Command;
@@ -46,7 +39,6 @@ public class SimpleWaiterClient
 
             reader = new ObjectInputStream(socket.getInputStream());
             Getraenkelist list =  (Getraenkelist) reader.readObject();
-            Log.e("Client-----", list.toString());
             return list;
         }
         catch(Exception ex)

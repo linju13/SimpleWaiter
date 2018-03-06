@@ -59,9 +59,9 @@ public class SimpleWaiterServer extends SimpleServer
             list.addGeatraenk(new Getraenk("Vodka Cola",0.3,2.75, EinheitenEnum.LITER));
             list.addGeatraenk(new Getraenk("Vodka Orange",0.3,3, EinheitenEnum.LITER));
             list.addGeatraenk(new Getraenk("Malibu Orange",0.3,5, EinheitenEnum.LITER));
-            list.addGeatraenk(new Getraenk("1253",0.3,5, EinheitenEnum.LITER));
-            list.addGeatraenk(new Getraenk("<esyhfr",0.3,5, EinheitenEnum.LITER));
-            list.addGeatraenk(new Getraenk("djgxfzcit",0.3,5, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("Wasser",0.3,5, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("Wein",0.3,5, EinheitenEnum.LITER));
+            list.addGeatraenk(new Getraenk("Saft",0.3,5, EinheitenEnum.LITER));
 
             writer.writeObject(list);
 
