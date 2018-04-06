@@ -17,7 +17,6 @@ import java.util.*;
 
 import bl.SimpleWaiterTableModel;
 import server.SimpleWaiterServer;
-import speedbars.simplewaiterserver.Managegetraenkeliste;
 import speedbars.simplewaiterserver.R;
 
 public class TableViewActivity extends AppCompatActivity {
