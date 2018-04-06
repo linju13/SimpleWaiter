@@ -10,10 +10,15 @@
 
     <ExpandableListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:id="@+id/expandList">
 
 
     </ExpandableListView>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/auswahl"
+        android:onClick="onAuswahl"/>
 </LinearLayout>

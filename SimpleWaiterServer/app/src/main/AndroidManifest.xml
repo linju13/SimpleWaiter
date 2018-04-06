@@ -11,17 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="speedbars.activities.TableViewActivity">
+        <activity android:name="speedbars.activities.TableViewActivity"></activity>
+        <activity android:name=".Overview">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Managegetraenkeliste" />
-        <activity android:name=".Overview" />
         <activity android:name=".GetraenkeKonfig" />
-        <activity android:name=".PreSettingsGetraenke"></activity>
+        <activity android:name=".PreSettingsGetraenke" />
+        <activity android:name=".AddGetraenk"></activity>
     </application>
 
 </manifest>

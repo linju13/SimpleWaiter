@@ -10,4 +10,18 @@
     <string name="getraenkekonfigurieren">Getränke konfigurieren</string>
     <string name="server">Server starten</string>
     <string name="servername"> Simple Waiter - Server</string>
+
+    <string name="addGetraenk">Getränk hinzufügen</string>
+    <string name="bez">Bezeichnung</string>
+    <string name="menge">Menge</string>
+    <string name="preis">Preis</string>
+    <string name="einheit">Einheit</string>
+    <string name="abbruch">Abbruch</string>
+
+
+    <string name="getr">Getränke</string>
+    <string name="getrlist">Getraenkeliste</string>
+
+    <string name="auswahl">Getränkeliste auswählen</string>
+
 </resources>
