@@ -72,7 +72,7 @@ public class SimpleWaiterServer extends SimpleServer
             while(!reader.readObject().toString().equals(Command.DISCONNECT))
             {
                 bestellung = (Bestellung) reader.readObject();
-
+                Log.e("-------", bestellung+"");
                 model.addOrder(bestellung);
                 activity.drawTable(bestellung, activity, model);
             }

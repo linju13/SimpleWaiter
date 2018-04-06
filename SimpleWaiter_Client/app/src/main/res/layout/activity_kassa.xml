@@ -14,7 +14,7 @@
         android:background="@color/colorPrimaryDark">
 
         <TextView
-            android:layout_columnSpan="5"
+            android:layout_columnSpan="4"
             android:layout_column="0"
             android:layout_row="0"
             android:layout_width="wrap_content"
@@ -25,11 +25,9 @@
             android:textSize="70sp"
             android:layout_columnWeight="1"
             android:layout_rowWeight="0"
-
+            android:id="@+id/betrag"
 
             />
-
-
 
         <Button
             android:id="@+id/B0_0"
@@ -37,6 +35,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
 
         <Button
@@ -45,6 +44,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B0_2"
@@ -52,6 +52,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B0_3"
@@ -59,6 +60,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B0_4"
@@ -66,6 +68,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B1_0"
@@ -73,6 +76,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B1_1"
@@ -80,6 +84,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B1_2"
@@ -87,6 +92,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B1_3"
@@ -94,6 +100,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B1_4"
@@ -101,6 +108,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B2_0"
@@ -108,6 +116,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B2_1"
@@ -115,6 +124,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B2_2"
@@ -122,6 +132,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B2_3"
@@ -129,6 +140,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B2_4"
@@ -136,6 +148,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B3_0"
@@ -143,6 +156,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B3_1"
@@ -150,6 +164,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B3_2"
@@ -157,6 +172,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B3_3"
@@ -164,6 +180,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <Button
             android:id="@+id/B3_4"
@@ -171,6 +188,7 @@
             android:layout_rowWeight="1"
             android:background="@drawable/shape_button_normal"
             android:layout_margin="10dp"
+            android:textSize="30sp"
             />
         <GridLayout
             android:layout_width="match_parent"
@@ -214,6 +232,7 @@
                 android:layout_width="wrap_content"
                 android:textSize="50sp"
                 android:layout_margin="10dp"
+                android:onClick="pay"
 
                 android:background="@color/colorPrimary"/>
         </GridLayout>

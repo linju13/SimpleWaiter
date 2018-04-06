@@ -59,6 +59,7 @@ public class TableViewActivity extends AppCompatActivity {
                             view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
                             view.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
                             view.setPadding(30,0,0,0);
+                            view.setTextSize(30);
 
                             view2 = new TextView(tableview);
                             view2.setText(model.formatDate(bestellung.getBestellzeit()));
@@ -66,6 +67,7 @@ public class TableViewActivity extends AppCompatActivity {
                             view2.setMaxWidth(tableview.findViewById(R.id.bestellzeit).getWidth());
                             view2.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
                             view2.setPadding(30,0,0,0);
+                            view2.setTextSize(30);
 
                             view3 = new TextView(tableview);
                             view3.setText(String.format("%6.2f €", bestellung.getGesamtSumme()));
@@ -73,6 +75,7 @@ public class TableViewActivity extends AppCompatActivity {
                             view3.setMaxWidth(tableview.findViewById(R.id.summe).getWidth());
                             view3.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
                             view3.setPadding(30,0,0,0);
+                            view3.setTextSize(30);
 
                             row = new TableRow(tableview);
                             row.addView(view);

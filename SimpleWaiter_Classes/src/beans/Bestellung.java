@@ -4,6 +4,7 @@ package beans;
 import enums.EinheitenEnum;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -24,32 +25,12 @@ public class Bestellung implements Serializable
         id = 0;
     }
 
-    public Bestellung(Date bestellzeit, Map<Getraenk, Integer> getraenke, double gesamtSumme, int kellnerId) 
+    public Bestellung(Date bestellzeit, int kellnerId) 
     {
         this.bestellzeit = bestellzeit;
-        this.getraenke = getraenke;
-        this.gesamtSumme = gesamtSumme;
-        
+        getraenke = new HashMap();
         bestellid = String.format("%02d - %03d", kellnerId, ++id);
     }
-    
-    //getter
-    public String getBestellid() {
-        return bestellid;
-    }
-
-    public Date getBestellzeit() {
-        return bestellzeit;
-    }
-
-    public Map<Getraenk, Integer> getGetraenke() {
-        return getraenke;
-    }
-
-    public double getGesamtSumme() {
-        return gesamtSumme;
-    }
-    
     
     public void getraenkHinzufuegen(Getraenk g, int value){
         if(getraenke.containsKey(g)){
@@ -83,5 +64,47 @@ public class Bestellung implements Serializable
         }
         return get;
     }
+
+    public String getBestellid() {
+        return bestellid;
+    }
+
+    public void setBestellid(String bestellid) {
+        this.bestellid = bestellid;
+    }
+
+    public Date getBestellzeit() {
+        return bestellzeit;
+    }
+
+    public void setBestellzeit(Date bestellzeit) {
+        this.bestellzeit = bestellzeit;
+    }
+
+    public Map<Getraenk, Integer> getGetraenke() {
+        return getraenke;
+    }
+
+    public void setGetraenke(Map<Getraenk, Integer> getraenke) {
+        this.getraenke = getraenke;
+    }
+
+    public double getGesamtSumme() {
+        return gesamtSumme;
+    }
+
+    public void setGesamtSumme(double gesamtSumme) {
+        this.gesamtSumme = gesamtSumme;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Bestellung.id = id;
+    }
     
+    
+   
 }
