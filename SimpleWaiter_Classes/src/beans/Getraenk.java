@@ -8,8 +8,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlType(propOrder = {"name","menge", "einheit", "preis"})
-@XmlAccessorType(XmlAccessType.FIELD)
+/*@XmlType(propOrder = {"name","menge", "einheit", "preis"})
+@XmlAccessorType(XmlAccessType.FIELD)*/
 public class Getraenk implements Serializable
 {
     @XmlAttribute 

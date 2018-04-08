@@ -5,8 +5,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -20,9 +23,9 @@ import java.util.List;
 
 import beans.Getraenk;
 import beans.Getraenkelist;
-import enums.EinheitenEnum;
 import server.ApplicationVariables;
 import xml.XMLAccess;
+
 
 public class GetraenkeKonfig extends Activity {
 
@@ -66,19 +69,21 @@ public class GetraenkeKonfig extends Activity {
             name += ".xml";
 
 
-            XMLAccess xml = XMLAccess.getInstance(ApplicationVariables.getPath() + name);
+            XMLAccess xml = XMLAccess.getInstance();
             Getraenkelist getraenkelist = new Getraenkelist();
 
-            for (Getraenk g : getraenkeAdapter.getGetraenke()) {
+            for (Getraenk g : getraenkeAdapter.getGetraenke())
+            {
                 getraenkelist.addGeatraenk(g);
             }
 
-            try {
-                xml.marshall(getraenkelist);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
+            try
+            {
+                xml.marshall(getraenkelist, ApplicationVariables.getPath() + name);
+            }
+            catch (Exception e)
+            {
+                Log.e("Marshall", e.toString());
             }
         }
         else

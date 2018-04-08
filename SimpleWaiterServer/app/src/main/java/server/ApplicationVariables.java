@@ -24,5 +24,5 @@ public class ApplicationVariables {
         return path;
     }
 
-    private static final String path = System.getProperty("user.dir") + File.separator + "main" + File.separator + "res" + File.separator + "xml" + File.separator;
+    public static String path;
 }

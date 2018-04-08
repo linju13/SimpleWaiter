@@ -7,24 +7,18 @@ package beans;
 
 import java.io.Serializable;
 import java.util.LinkedList;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  *
  * @author Laura
  */
-@XmlRootElement (name="getraenke")
+/*@XmlRootElement (name="getraenke")
 @XmlType(propOrder = {"getraenke"})
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.FIELD)*/
 public class Getraenkelist implements Serializable
 {
     
-    @XmlElement (name="getraenk")
+    //@XmlElement (name="getraenk")
     private LinkedList<Getraenk> getraenke;
     
     public Getraenkelist()
@@ -39,7 +33,5 @@ public class Getraenkelist implements Serializable
 
     public LinkedList<Getraenk> getGetraenke() {
         return getraenke;
-    }
-    
-    
+    } 
 }

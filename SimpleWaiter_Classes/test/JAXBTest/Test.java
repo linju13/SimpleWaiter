@@ -8,12 +8,17 @@ package JAXBTest;
 import beans.Getraenk;
 import beans.Getraenkelist;
 import enums.EinheitenEnum;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import org.xml.sax.SAXException;
 import xml.XMLAccess;
 
 /**
@@ -34,7 +39,7 @@ public class Test {
 
     }
     
-    private void testXMLAccess()
+   /* private void testXMLAccess()
     {
         XMLAccess xml = XMLAccess.getInstance("");
         try {
@@ -57,11 +62,36 @@ public class Test {
         }
         
         gr.getGetraenke().stream().forEach(System.out::println);
+    }*/
+    
+    private void testXMLAccess2() throws ParserConfigurationException, TransformerException, SAXException, IOException
+    {
+        String fileName = System.getProperty("user.dir") + File.separator + "src" + File.separator + "data" + File.separator + "getraenkeliste2.xml";
+        
+        XMLAccess xml = XMLAccess.getInstance();
+        xml.marshall(getraenke, fileName);
+        Getraenkelist getraenkelist= xml.unmarshall(fileName);
+        
+        for(Getraenk getraenk: getraenkelist.getGetraenke())
+        {
+            System.out.println(getraenk);
+        }
     }
     
     public static void main(String[] args) {
       Test t = new Test();
       t.createGetraenke();
-      t.testXMLAccess();
+      //t.testXMLAccess();
+        try {
+            t.testXMLAccess2();
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

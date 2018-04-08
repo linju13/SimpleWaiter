@@ -60,7 +60,7 @@ public class SimpleWaiterTableModel
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void sort()
     {
-        orders.sort((o1, o2) -> o2.getBestellzeit().compareTo(o1.getBestellzeit()));
+        //orders.sort((o1, o2) -> o2.getBestellzeit().compareTo(o1.getBestellzeit()));
     }
 
     public String formatDate(Date date)

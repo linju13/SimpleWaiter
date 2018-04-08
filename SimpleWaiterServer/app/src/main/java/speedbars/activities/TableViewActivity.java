@@ -33,7 +33,7 @@ public class TableViewActivity extends AppCompatActivity {
         //drawTable(model, this, model);
     }
 
-    public void drawTable(Bestellung bestellung, TableViewActivity tableview, SimpleWaiterTableModel model)
+    public void drawTable(final Bestellung bestellung, final TableViewActivity tableview, final SimpleWaiterTableModel model)
     {
         new Thread() {
             public void run() {
@@ -101,7 +101,7 @@ public class TableViewActivity extends AppCompatActivity {
         }.start();
     }
 
-    public void drawDetails(int index, SimpleWaiterTableModel model, TableViewActivity tableview)
+    public void drawDetails(final int index, final SimpleWaiterTableModel model, final TableViewActivity tableview)
     {
         new Thread() {
             public void run() {
