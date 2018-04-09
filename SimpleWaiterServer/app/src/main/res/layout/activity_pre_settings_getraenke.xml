@@ -13,8 +13,13 @@
         android:layout_height="400dp"
         android:id="@+id/expandList">
 
-
     </ExpandableListView>
+
+<Spinner
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:id="@+id/listen"
+    android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="match_parent"

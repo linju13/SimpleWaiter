@@ -115,7 +115,7 @@ public class XMLAccess {
      
     public Getraenkelist unmarshall(String filename) throws ParserConfigurationException, SAXException, IOException 
     {
-        Getraenkelist getraenke = new Getraenkelist();
+        Getraenkelist getraenke = new Getraenkelist(filename);
         
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();    
         DocumentBuilder builder = factory.newDocumentBuilder();    

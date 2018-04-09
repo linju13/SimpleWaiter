@@ -21,8 +21,11 @@ public class Getraenkelist implements Serializable
     //@XmlElement (name="getraenk")
     private LinkedList<Getraenk> getraenke;
     
-    public Getraenkelist()
+    private String name;
+    
+    public Getraenkelist(String n)
     {
+        this.name = n;
         getraenke = new LinkedList<>();
     }
     
@@ -34,4 +37,14 @@ public class Getraenkelist implements Serializable
     public LinkedList<Getraenk> getGetraenke() {
         return getraenke;
     } 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
 }

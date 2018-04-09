@@ -55,7 +55,7 @@ public class SimpleWaiterServer extends SimpleServer
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            Getraenkelist list = new Getraenkelist();
+            Getraenkelist list = new Getraenkelist("List 1");
             list.addGeatraenk(new Getraenk("Rum Cola",0.3,2.75, EinheitenEnum.LITER));
             list.addGeatraenk(new Getraenk("Vodka Cola",0.3,2.75, EinheitenEnum.LITER));
             list.addGeatraenk(new Getraenk("Vodka Orange",0.3,3, EinheitenEnum.LITER));

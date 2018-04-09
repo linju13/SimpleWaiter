@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import enums.EinheitenEnum;
 
         private List<Getraenk> getraenke = new LinkedList<>();
         private Context context;
+        private List<Integer> checked = new LinkedList<>();
 
          public List<Getraenk> getGetraenke() {
              return getraenke;
@@ -41,9 +44,23 @@ import enums.EinheitenEnum;
           getraenke.add(g);
         }
 
-         public void delGetraenk(int index)
+
+        public List<Integer> getCheckedIndex()
+        {
+            return checked;
+        }
+
+
+
+
+         public void deleteGetraenke()
          {
-            getraenke.remove(index);
+             if(checked.size() > 0) {
+                 for (int i : checked) {
+                     getraenke.remove(i);
+                 }
+             }
+             checked.clear();
          }
 
 
@@ -75,7 +92,26 @@ import enums.EinheitenEnum;
             name.setText(g.getName());
             price.setText(String.format("%.2f €",g.getPreis()));
 
+            CheckBox cb = v.findViewById(R.id.check);
+
+            cb.setId(position);
+
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked)
+                    {
+                       checked.add(buttonView.getId());
+                    }
+                    else
+                    {
+                        checked.remove(buttonView.getId());
+                    }
+                }
+            });
+
             v.setTag(this.getItemId(position));
+
             return v;
         }
 

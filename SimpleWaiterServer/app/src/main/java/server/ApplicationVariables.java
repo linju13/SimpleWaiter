@@ -24,5 +24,5 @@ public class ApplicationVariables {
         return path;
     }
 
-    public static String path;
+    public static String path = "";
 }

@@ -1,5 +1,6 @@
 package speedbars.simplewaiterserver;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,17 +61,18 @@ public class AddGetraenk extends AppCompatActivity {
        }
        catch(Exception ex)
        {
-           Intent intent1 = new Intent(AddGetraenk.this, GetraenkeKonfig.class);
-           startActivity(intent1);
+           setResult(-100);
+           this.finish();
        }
-
-        intent.putExtra("getraenk", g);
-        startActivity(intent);
+       Intent intent1 = new Intent();
+        intent1.putExtra("g", g);
+      setResult(Activity.RESULT_OK, intent1);
+        this.finish();
     }
 
     public void onCancle(View v)
     {
-        Intent intent = new Intent(AddGetraenk.this, GetraenkeKonfig.class);
-        startActivity(intent);
+        setResult(Activity.RESULT_CANCELED);
+        this.finish();
     }
 }

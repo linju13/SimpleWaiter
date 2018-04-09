@@ -31,7 +31,7 @@ public class Test {
     
     private void createGetraenke()
     {
-        getraenke = new Getraenkelist();
+        getraenke = new Getraenkelist("List 1");
         getraenke.addGeatraenk(new Getraenk("Bacardi Cola", 0.3, 3.5, EinheitenEnum.LITER));
         getraenke.addGeatraenk(new Getraenk("Red Bull", 0.25, 4, EinheitenEnum.LITER));
         getraenke.addGeatraenk(new Getraenk("Gin Tonic", 0.3, 4.1, EinheitenEnum.LITER));

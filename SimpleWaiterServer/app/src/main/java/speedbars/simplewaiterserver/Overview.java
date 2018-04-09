@@ -1,10 +1,12 @@
 package speedbars.simplewaiterserver;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -33,7 +35,7 @@ public class Overview extends AppCompatActivity {
 
         ApplicationVariables.path = this.getDataDir()  + File.separator;
 
-        Getraenkelist getraenke = new Getraenkelist();
+        Getraenkelist getraenke = new Getraenkelist("List 1");
        getraenke.addGeatraenk(new Getraenk("Bacardi Cola", 0.3, 3.5, EinheitenEnum.LITER));
         getraenke.addGeatraenk(new Getraenk("Soda", 0.3, 0.5, EinheitenEnum.LITER));
         getraenke.addGeatraenk(new Getraenk("Soda", 0.5, 1, EinheitenEnum.LITER));
@@ -66,10 +68,29 @@ public class Overview extends AppCompatActivity {
         }
     }
 
-    public void onStart(View view)
+    private static int PRESETTING = 150;
+    public void onServer(View view)
     {
-        Intent intent = new Intent(Overview.this, TableViewActivity.class);
-        startActivity(intent);
+        Intent intent = new Intent(Overview.this, PreSettingsGetraenke.class);
+        startActivityForResult(intent, PRESETTING);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == PRESETTING)
+        {
+            if(resultCode == Activity.RESULT_OK)
+            {
+                Toast.makeText(this, "Liste pre-setted", Toast.LENGTH_LONG);
+                Intent intent = new Intent(Overview.this, TableViewActivity.class);
+                startActivity(intent);
+            }
+            if(resultCode == Activity.RESULT_CANCELED)
+            {
+                Toast.makeText(this, "Es ist ein Problem beim Pre-Setting der Liste aufgetreten.", Toast.LENGTH_LONG);
+
+            }
+        }
     }
 
     public void onKonfig(View view)
