@@ -51,15 +51,15 @@ public class TableViewActivity extends AppCompatActivity {
 
         SimpleWaiterTableModel model = new SimpleWaiterTableModel();
         SimpleWaiterServer server = new SimpleWaiterServer(model , this);
-       // server.startServer();
+        server.startServer();
         //drawTable(model, this, model);
 
-        Bestellung b = new Bestellung(GregorianCalendar.getInstance().getTime(), 001);
+      /*  Bestellung b = new Bestellung(GregorianCalendar.getInstance().getTime(), 001);
         b.setBestellid("12345");
         b.setGesamtSumme(20);
         b.getraenkHinzufuegen(new Getraenk("Soda", 2, 2, EinheitenEnum.LITER), 5);
      model.addOrder(b);
-    drawTable(b, this, model);
+    drawTable(b, this, model);*/
     }
 
     public void drawTable(final Bestellung bestellung, final TableViewActivity tableview, final SimpleWaiterTableModel model)
