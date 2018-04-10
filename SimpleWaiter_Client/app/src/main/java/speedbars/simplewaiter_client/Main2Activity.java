@@ -1,11 +1,13 @@
 package speedbars.simplewaiter_client;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.io.File;
 import java.io.IOException;
 
 import beans.Getraenkelist;
@@ -22,6 +24,7 @@ public class Main2Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anzeige);
+
     }
 
     public void onConnect(View v)

@@ -130,29 +130,47 @@ public class Kassa extends AppCompatActivity
         }
     }
 
-    public void pay(View view)
-    {
-        try
-        {
+    public void pay(View view) {
+        try {
             order.setBestellzeit(new Date());
 
             SimpleWaiterClient client = SimpleWaiterClient.getTheInstance();
             client.send(order);
             order = new Bestellung(new Date(), 15);
 
-            ((TextView)kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", 0.0));
+            ((TextView) kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", 0.0));
 
-            for(int i = 0; i < list.size(); i++)
-            {
-                buttons[i/5][i%5].setText(list.get(i).getName());
-                buttons[i/5][i%5].setEnabled(true);
-                buttons[i/5][i%5].setTransitionName(i+"");
+            for (int i = 0; i < list.size(); i++) {
+                buttons[i / 5][i % 5].setText(list.get(i).getName());
+                buttons[i / 5][i % 5].setEnabled(true);
+                buttons[i / 5][i % 5].setTransitionName(i + "");
             }
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Log.e("senOrder----", ex.toString());
         }
-
     }
+
+        public void cancel(View view)
+        {
+            try {
+                order = new Bestellung(new Date(), 15);
+
+                ((TextView) kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", 0.0));
+
+                for (int i = 0; i < list.size(); i++) {
+                    buttons[i / 5][i % 5].setText(list.get(i).getName());
+                    buttons[i / 5][i % 5].setEnabled(true);
+                    buttons[i / 5][i % 5].setTransitionName(i + "");
+                }
+            } catch (Exception ex) {
+                Log.e("senOrder----", ex.toString());
+            }
+        }
+
+    public void back(View view)
+    {
+        finish();
+    }
+
+
 }
