@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import beans.Getraenk;
@@ -24,7 +25,7 @@ import speedbars.activities.TableViewActivity;
 
 public class ListenAdapter extends BaseExpandableListAdapter
 {
-    private List<Getraenkelist> listen;
+    private List<Getraenkelist> listen = new LinkedList<>();
 
     private Context context;
 

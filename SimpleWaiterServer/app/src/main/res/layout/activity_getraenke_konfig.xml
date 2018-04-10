@@ -15,6 +15,7 @@
     android:text="@string/getrlist"
     android:textColor="@color/white"
     android:textSize="30sp"
+    android:maxLines="1"
     android:id="@+id/listname"
     android:background="@drawable/buttonstyle"
     android:textAlignment="center"

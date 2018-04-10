@@ -79,10 +79,8 @@ public class GetraenkeKonfig extends Activity {
 
             try
             {
-                //TODO @Laura wirklich gespeichert??
-                File mypath = new File( Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_DOCUMENTS) + "/SimpleWaiterServer", name);
-            xml.marshall(getraenkelist, mypath.getAbsolutePath());
+            xml.marshall(getraenkelist, ApplicationVariables.getPath()+name);
+            Toast.makeText(this, "Liste wurde gespeichert!", Toast.LENGTH_LONG);
             }
             catch (Exception e)
             {

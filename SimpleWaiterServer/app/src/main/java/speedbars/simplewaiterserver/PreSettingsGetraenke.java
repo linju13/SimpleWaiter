@@ -3,6 +3,7 @@ package speedbars.simplewaiterserver;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,19 +37,15 @@ public class PreSettingsGetraenke extends AppCompatActivity {
 
     private ArrayAdapter<String> arrayAdapter;
 
-    private List<Getraenkelist> getraenkelists;
+    private List<Getraenkelist> getraenkelists = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_settings_getraenke);
 
-        //TODO Listen holen @Laura
-
-        File deinRootDir = new File( Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOCUMENTS) +"/SimpleWaiterServer");
-        ArrayList<String> files = new ArrayList<String>
-                ();
+        File deinRootDir = new File(ApplicationVariables.getPath());
+        List<String> files = new ArrayList<String>();
         deinRootDir.listFiles(new FileFilter(){
             public boolean accept(File f){
                 if(f.getName().endsWith(".xml")) {
@@ -72,6 +69,9 @@ public class PreSettingsGetraenke extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                String[] str = filename.split("/");
+
+                g.setName(str[str.length-1]);
                 getraenkelists.add(g);
             }
         }
