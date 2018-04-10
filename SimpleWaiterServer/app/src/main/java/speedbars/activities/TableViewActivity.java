@@ -1,8 +1,11 @@
 package speedbars.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -111,20 +114,39 @@ public class TableViewActivity extends AppCompatActivity {
                         @Override
                         public void run()
                         {
-                            TableLayout table = (TableLayout) tableview.findViewById(R.id.tableLayout);
+                            AlertDialog alert = new AlertDialog.Builder(TableViewActivity.this)
+                                    .setTitle(model.getValueAt(index,0)+"")
+                                    .setMessage(model.toStringOrder(index))
 
-                            String[] colors = {"#f2f2f2","#cccccc"};
+                                    .setPositiveButton("ok", new DialogInterface.OnClickListener()
+                                    {
+                                        public void onClick(DialogInterface dialog, int whichButton)
+                                        {
 
-                            TextView view;
 
-                            view = new TextView(tableview);
-                            view.setText(model.toStringOrder(index));
-                            view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
-                            view.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
+                                        }
+                                    }).show();
 
-                            TableRow row = new TableRow(tableview);
-                            row.addView(view);
-                            table.addView(row, 1);
+                            TextView titleTxt = (TextView) alert.findViewById(android.R.id.title);
+
+                            try
+                            {
+                                titleTxt.setTextSize(40.0f);
+                                titleTxt.setTextColor(0xff9900);
+                            }
+                            catch(Exception ex)
+                            {
+
+                            }
+
+
+                            TextView msgTxt = (TextView) alert.findViewById(android.R.id.message);
+                            msgTxt.setTextSize(22.0f);
+
+                            Typeface face = Typeface.createFromAsset(getAssets(),
+                                    "fonts/Courier New.ttf");
+                            msgTxt.setTypeface(face);
+
                         }
                     });
                     Thread.sleep(300);

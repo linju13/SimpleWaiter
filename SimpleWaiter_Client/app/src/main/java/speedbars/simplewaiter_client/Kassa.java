@@ -86,6 +86,8 @@ public class Kassa extends AppCompatActivity
 
         for(int i = 0; i < list.size(); i++)
         {
+            Log.e(".....", i + " ... " + list.get(i).getName());
+            Log.e(".....", i /5+"..."+i%5);
             buttons[i/5][i%5].setText(list.get(i).getName());
             buttons[i/5][i%5].setEnabled(true);
             buttons[i/5][i%5].setTransitionName(i+"");
@@ -98,6 +100,31 @@ public class Kassa extends AppCompatActivity
                     Log.e("----------", list.get(Integer.parseInt(v.getTransitionName()))+"");
                     order.getraenkHinzufuegen(list.get(Integer.parseInt(v.getTransitionName())), 1);
                     ((TextView)kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", order.getGesamtSumme()));
+
+                    int i = Integer.parseInt(v.getTransitionName());
+
+                    buttons[i/5][i%5].setText(list.get(i).getName() +  " x " + order.getGetraenke().get(list.get(Integer.parseInt(v.getTransitionName()))));
+                }
+            });
+
+            buttons[i/5][i%5].setOnLongClickListener(new View.OnLongClickListener()
+            {
+                public boolean onLongClick(View v)
+                {
+                    Log.e("----------", list.get(Integer.parseInt(v.getTransitionName()))+"");
+
+                    if(order.getGetraenke().get(list.get(Integer.parseInt(v.getTransitionName()))) != 0)
+                    {
+                        order.getraenkStornieren(list.get(Integer.parseInt(v.getTransitionName())), 1);
+                        ((TextView)kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", order.getGesamtSumme()));
+                        int i = Integer.parseInt(v.getTransitionName());
+                        buttons[i/5][i%5].setText(list.get(i).getName() +  " x " + order.getGetraenke().get(list.get(Integer.parseInt(v.getTransitionName()))));
+                    }
+
+
+
+
+                    return true;
                 }
             });
         }
@@ -114,6 +141,13 @@ public class Kassa extends AppCompatActivity
             order = new Bestellung(new Date(), 15);
 
             ((TextView)kassa.findViewById(R.id.betrag)).setText(String.format("Betrag: %3.2f €", 0.0));
+
+            for(int i = 0; i < list.size(); i++)
+            {
+                buttons[i/5][i%5].setText(list.get(i).getName());
+                buttons[i/5][i%5].setEnabled(true);
+                buttons[i/5][i%5].setTransitionName(i+"");
+            }
         }
         catch (Exception ex)
         {
