@@ -81,9 +81,11 @@ public class SimpleWaiterTableModel
         {
             quantity = String.format("(%.2f%s)", o.getMenge(), o.getEinheit().getKurzzeichen());
 
-            output += String.format("%-30sx%2d=%.2f €\n", o.getName()+quantity, orderMap.get(o),
+            output += String.format("%20s x %2d = %6.2f €\n", o.getName()+quantity, orderMap.get(o),
                                                            o.getPreis()*orderMap.get(o));
         }
+
+        output += String.format("%20s      = %6.2f €\n", "", order.getGesamtSumme());
 
         return output;
     }
