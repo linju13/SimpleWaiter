@@ -34,6 +34,11 @@ public class SimpleWaiterTableModel
         return columnNames.length;
     }
 
+    public Bestellung getBestellung(int i)
+    {
+        return orders.get(i);
+    }
+
     public String getColumnName(int column)
     {
         return columnNames[column];
