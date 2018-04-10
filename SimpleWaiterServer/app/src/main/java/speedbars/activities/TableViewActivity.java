@@ -37,6 +37,7 @@ import java.io.OutputStream;
 import java.util.*;
 
 import bl.SimpleWaiterTableModel;
+import enums.EinheitenEnum;
 import server.SimpleWaiterServer;
 import speedbars.simplewaiterserver.R;
 
@@ -50,8 +51,15 @@ public class TableViewActivity extends AppCompatActivity {
 
         SimpleWaiterTableModel model = new SimpleWaiterTableModel();
         SimpleWaiterServer server = new SimpleWaiterServer(model , this);
-        server.startServer();
+       // server.startServer();
         //drawTable(model, this, model);
+
+        Bestellung b = new Bestellung(GregorianCalendar.getInstance().getTime(), 001);
+        b.setBestellid("12345");
+        b.setGesamtSumme(20);
+        b.getraenkHinzufuegen(new Getraenk("Soda", 2, 2, EinheitenEnum.LITER), 5);
+     model.addOrder(b);
+    drawTable(b, this, model);
     }
 
     public void drawTable(final Bestellung bestellung, final TableViewActivity tableview, final SimpleWaiterTableModel model)
@@ -147,7 +155,6 @@ public class TableViewActivity extends AppCompatActivity {
                                     .setNegativeButton("PDF Erstellen", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-
                                             try {
                                                 createPdfWrapper(model.getBestellung(index));
                                             } catch (FileNotFoundException e) {
@@ -196,18 +203,16 @@ public class TableViewActivity extends AppCompatActivity {
     private void createPdfWrapper(Bestellung b) throws FileNotFoundException,DocumentException {
         this.b = b;
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
                 if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
                     showMessageOKCancel("You need to allow access to Storage",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                         requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                                 REQUEST_CODE_ASK_PERMISSIONS);
-                                    }
+
                                 }
                             });
                     return;
@@ -215,15 +220,13 @@ public class TableViewActivity extends AppCompatActivity {
 
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_ASK_PERMISSIONS);
-            }
-            return;
+
         }else {
-            createPdf();
+            createPdf(b);
         }
     }
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {
@@ -258,7 +261,7 @@ public class TableViewActivity extends AppCompatActivity {
 
     private static final String TAG = "TableViewActivity";
 
-    private void createPdf() throws FileNotFoundException, DocumentException {
+    private void createPdf(Bestellung b) throws FileNotFoundException, DocumentException {
 
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
         if (!docsFolder.exists()) {
