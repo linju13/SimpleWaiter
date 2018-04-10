@@ -2,6 +2,7 @@ package speedbars.simplewaiterserver;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,14 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
 
+import org.xml.sax.SAXException;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import beans.Getraenk;
 import beans.Getraenkelist;
 import enums.EinheitenEnum;
 import server.ApplicationVariables;
+import xml.XMLAccess;
 
 public class PreSettingsGetraenke extends AppCompatActivity {
 
@@ -26,6 +36,8 @@ public class PreSettingsGetraenke extends AppCompatActivity {
 
     private ArrayAdapter<String> arrayAdapter;
 
+    private List<Getraenkelist> getraenkelists;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,27 +45,38 @@ public class PreSettingsGetraenke extends AppCompatActivity {
 
         //TODO Listen holen @Laura
 
+        File deinRootDir = new File( Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DOCUMENTS) +"/SimpleWaiterServer");
+        ArrayList<String> files = new ArrayList<String>
+                ();
+        deinRootDir.listFiles(new FileFilter(){
+            public boolean accept(File f){
+                if(f.getName().endsWith(".xml")) {
+                    files.add(f.getAbsolutePath());
+                }
+                return false;
+            }} );
 
+        if(files.size() > 0) {
+            for (String filename : files)
+            {
 
-        Getraenkelist list = new Getraenkelist("List 1");
-        list.addGeatraenk(new Getraenk("Rum Cola",0.3,2.75, EinheitenEnum.LITER));
-        list.addGeatraenk(new Getraenk("Vodka Cola",0.3,2.75, EinheitenEnum.LITER));
-        list.addGeatraenk(new Getraenk("Vodka Orange",0.3,3, EinheitenEnum.LITER));
-        list.addGeatraenk(new Getraenk("Malibu Orange",0.3,5, EinheitenEnum.LITER));
-        list.addGeatraenk(new Getraenk("Wasser",0.3,5, EinheitenEnum.LITER));
-        list.addGeatraenk(new Getraenk("Wein",0.3,5, EinheitenEnum.LITER));
-        list.addGeatraenk(new Getraenk("Saft",0.3,5, EinheitenEnum.LITER));
+                XMLAccess x = XMLAccess.getInstance();
+            Getraenkelist g = null;
+                try {
+                    g =  x.unmarshall(filename);
+                } catch (ParserConfigurationException e) {
+                    e.printStackTrace();
+                } catch (SAXException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                getraenkelists.add(g);
+            }
+        }
 
-        Getraenkelist list1 = new Getraenkelist("List 2");
-        list1.addGeatraenk(new Getraenk("Rum Cola",0.3,2.75, EinheitenEnum.LITER));
-        list1.addGeatraenk(new Getraenk("Vodka Cola",0.3,2.75, EinheitenEnum.LITER));
-        list1.addGeatraenk(new Getraenk("Vodka Orange",0.3,3, EinheitenEnum.LITER));
-        list1.addGeatraenk(new Getraenk("Malibu Orange",0.3,5, EinheitenEnum.LITER));
-         List<Getraenkelist> lists = new LinkedList<>();
-
-        lists.add(list);
-        lists.add(list1);
-        adapter = new ListenAdapter(this, lists);
+        adapter = new ListenAdapter(this, getraenkelists);
 
 
         lview = findViewById(R.id.expandList);
@@ -61,7 +84,7 @@ public class PreSettingsGetraenke extends AppCompatActivity {
 
         List<String> listen = new LinkedList<>();
 
-        for(Getraenkelist g: lists)
+        for(Getraenkelist g: getraenkelists)
         {
             listen.add(g.getName());
         }

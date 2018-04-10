@@ -9,6 +9,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,8 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -76,11 +79,9 @@ public class GetraenkeKonfig extends Activity {
 
             try
             {
-                //TODO @Laura wirklich gespeichert???
-                ContextWrapper cw = new ContextWrapper(getApplicationContext());
-                File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-                File mypath = new File(directory, name);
-
+                //TODO @Laura wirklich gespeichert??
+                File mypath = new File( Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DOCUMENTS) + "/SimpleWaiterServer", name);
             xml.marshall(getraenkelist, mypath.getAbsolutePath());
             }
             catch (Exception e)
