@@ -24,10 +24,14 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.*;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.DottedLineSeparator;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import beans.*;
 
@@ -35,6 +39,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import bl.SimpleWaiterTableModel;
@@ -59,7 +64,13 @@ public class TableViewActivity extends AppCompatActivity {
         b.setBestellid("12345");
         b.setGesamtSumme(20);
         b.getraenkHinzufuegen(new Getraenk("Soda", 2, 2, EinheitenEnum.LITER), 5);
-     model.addOrder(b);
+        b.getraenkHinzufuegen(new Getraenk("Cola", 5, 2.5, EinheitenEnum.LITER), 5);
+        b.getraenkHinzufuegen(new Getraenk("Scoutch", 5, 2.5, EinheitenEnum.LITER), 5);
+
+        model.addOrder(b);
+
+     ;
+
     drawTable(b, this, model);
     }
 
@@ -277,15 +288,48 @@ public class TableViewActivity extends AppCompatActivity {
         Document document = new Document();
         PdfWriter.getInstance(document, output);
         document.open();
-
-        document.add(new Paragraph("Bestellung Nr."  + b.getBestellid()));
         document.addAuthor("SimpleWaiter APP");
         document.addTitle("Bestellung Nr." + b.getBestellid());
-        String context = b.getBestellzeit() + "\n\n";
+
+        Font bold = new Font();
+        bold.setSize(30);
+        bold.setStyle(Font.BOLD);
+        bold.setColor(BaseColor.DARK_GRAY);
 
 
+        document.add(new Paragraph("Bestellung Nr."  + b.getBestellid() , bold));
+        String context = b.getBestellzeit()  + "\n\n";
 
         document.add(new Paragraph(context));
+
+        Font title1 = new Font();
+        title1.setSize(20);
+        title1.setStyle(Font.BOLD);
+        String context1 = "Bestellungsinhalt:\n\n";
+        document.add(new Paragraph(context1, title1));
+
+
+       LineSeparator dottedline = new LineSeparator();
+        dottedline.setOffset(-2);
+        document.add(dottedline);
+
+        String bestellung = "";
+        for(Getraenk g : b.getGetraenke().keySet())
+        {
+       bestellung += String.format("   %-50s - %4dx%5.2f %-20s - %6.2f€", g.getName(), b.getGetraenke().get(g) , g.getMenge(),  g.getEinheit().getBezeichnung(), g.getPreis()) + "\n";
+        }
+        bestellung+="\n";
+        document.add(new Paragraph(bestellung));
+
+        document.add(dottedline);
+
+        String summe = String.format("%65.2f€", b.getGesamtSumme());
+
+        document.add(new Paragraph(summe, title1));
+
+
+        String ending = "\n\n\n\nabgerechnet durch SimpleWaiter";
+        document.add(new Paragraph(ending));
 
         document.close();
         previewPdf();
