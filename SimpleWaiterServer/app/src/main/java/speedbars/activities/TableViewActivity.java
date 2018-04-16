@@ -15,6 +15,7 @@ import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -51,15 +52,15 @@ public class TableViewActivity extends AppCompatActivity {
 
         SimpleWaiterTableModel model = new SimpleWaiterTableModel();
         SimpleWaiterServer server = new SimpleWaiterServer(model , this);
-        server.startServer();
+       // server.startServer();
         //drawTable(model, this, model);
 
-      /*  Bestellung b = new Bestellung(GregorianCalendar.getInstance().getTime(), 001);
+        Bestellung b = new Bestellung(GregorianCalendar.getInstance().getTime(), 001);
         b.setBestellid("12345");
         b.setGesamtSumme(20);
         b.getraenkHinzufuegen(new Getraenk("Soda", 2, 2, EinheitenEnum.LITER), 5);
      model.addOrder(b);
-    drawTable(b, this, model);*/
+    drawTable(b, this, model);
     }
 
     public void drawTable(final Bestellung bestellung, final TableViewActivity tableview, final SimpleWaiterTableModel model)
@@ -87,7 +88,7 @@ public class TableViewActivity extends AppCompatActivity {
                             view.setMaxWidth(tableview.findViewById(R.id.bestellid).getWidth());
                             view.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
                             view.setPadding(30,0,0,0);
-                            view.setTextSize(30);
+                            view.setTextSize(15);
 
                             view2 = new TextView(tableview);
                             view2.setText(model.formatDate(bestellung.getBestellzeit()));
@@ -95,7 +96,7 @@ public class TableViewActivity extends AppCompatActivity {
                             view2.setMaxWidth(tableview.findViewById(R.id.bestellzeit).getWidth());
                             view2.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
                             view2.setPadding(30,0,0,0);
-                            view2.setTextSize(30);
+                            view2.setTextSize(15);
 
                             view3 = new TextView(tableview);
                             view3.setText(String.format("%6.2f €", bestellung.getGesamtSumme()));
@@ -103,7 +104,7 @@ public class TableViewActivity extends AppCompatActivity {
                             view3.setMaxWidth(tableview.findViewById(R.id.summe).getWidth());
                             view3.setBackgroundColor(Color.parseColor(colors[model.getRowCount()%2]));
                             view3.setPadding(30,0,0,0);
-                            view3.setTextSize(30);
+                            view3.setTextSize(15);
 
                             row = new TableRow(tableview);
                             row.addView(view);
@@ -269,7 +270,9 @@ public class TableViewActivity extends AppCompatActivity {
             Log.i(TAG, "Created a new directory for PDF");
         }
 
-        pdfFile = new File(docsFolder.getAbsolutePath(),"HelloWorld.pdf");
+        String name = "Bestellung" + b.getBestellid() + "_" + Calendar.getInstance().getTimeInMillis() +".pdf";
+
+        pdfFile = new File(docsFolder.getAbsolutePath(),name);
         OutputStream output = new FileOutputStream(pdfFile);
         Document document = new Document();
         PdfWriter.getInstance(document, output);
@@ -298,9 +301,9 @@ public class TableViewActivity extends AppCompatActivity {
         if (list.size() > 0) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
-            Uri uri = Uri.fromFile(pdfFile);
+            Uri uri = FileProvider.getUriForFile(this, "speedbars.simplewaiterserver.provider", pdfFile);
             intent.setDataAndType(uri, "application/pdf");
-
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             startActivity(intent);
         }else{
             Toast.makeText(this,"Download a PDF Viewer to see the generated PDF",Toast.LENGTH_SHORT).show();
