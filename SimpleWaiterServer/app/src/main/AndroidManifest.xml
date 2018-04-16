@@ -5,6 +5,15 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <supports-screens
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:xlargeScreens="true"
+        >
+
+    </supports-screens>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_local_bar_black_24dp"
